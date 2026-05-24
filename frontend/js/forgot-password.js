@@ -19,7 +19,7 @@ async function sendResetLink() {
 
         const response =
             await fetch(
-                "http://127.0.0.1:5000/api/auth/forgot-password",
+                "https://secure-auth-system-bp36.onrender.com/api/auth/forgot-password",
                 {
                     method: "POST",
 

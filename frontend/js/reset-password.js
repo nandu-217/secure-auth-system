@@ -73,7 +73,7 @@ async function resetPassword() {
 
         const response =
             await fetch(
-                `http://127.0.0.1:5000/api/auth/reset-password/${token}`,
+                `https://secure-auth-system-bp36.onrender.com/api/auth/reset-password/${token}`,
                 {
                     method: "POST",
 

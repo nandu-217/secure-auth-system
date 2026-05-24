@@ -343,7 +343,8 @@ Your account is now verified.
 <script>
 
 <button
-onclick="window.location.href='http://127.0.0.1:5500/index.html'"
+onclick="window.location.href =
+"http://127.0.0.1:5500/index.html";"
 style="
 margin-top:20px;
 padding:12px 24px;

@@ -7,7 +7,7 @@ async function sendOTP() {
 
     const response =
         await fetch(
-            "http://127.0.0.1:5000/api/otp/send",
+            "https://secure-auth-system-bp36.onrender.com/api/otp/send",
             {
                 method: "POST",
 
@@ -43,7 +43,7 @@ async function verifyOTP() {
 
     const response =
         await fetch(
-            "http://127.0.0.1:5000/api/otp/verify",
+            "https://secure-auth-system-bp36.onrender.comapi/otp/verify",
             {
                 method: "POST",
 
