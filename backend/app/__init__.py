@@ -45,6 +45,8 @@ def create_app():
     @jwt.token_in_blocklist_loader
     def check_token(jwt_header, jwt_payload):
         return jwt_payload["jti"] in blacklisted_tokens
+    with app.app_context():
+        db.create_all()
 
     return app
 from app.routes.otp_routes import otp_bp
