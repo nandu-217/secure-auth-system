@@ -414,9 +414,8 @@ def resend_verification():
     db.session.commit()
 
     verification_link = (
-        f"http://127.0.0.1:5000/api/auth/"
-        f"verify-email/{token}"
-    )
+    f"https://secure-auth-system-bp36.onrender.com/api/auth/verify-email/{token}"
+)
 
     try:
 
