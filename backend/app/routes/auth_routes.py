@@ -341,12 +341,11 @@ Your account is now verified.
 </div>
 
 <script>
+<div style="margin-top:25px;">
 
 <button
-onclick="window.location.href =
-"http://127.0.0.1:5500/index.html";"
+onclick="window.location.href='https://gilded-licorice-bd735c.netlify.app/index.html'"
 style="
-margin-top:20px;
 padding:12px 24px;
 border:none;
 border-radius:10px;
@@ -360,6 +359,8 @@ font-size:16px;
 Go To Login
 
 </button>
+
+</div>
 
 </script>
 
