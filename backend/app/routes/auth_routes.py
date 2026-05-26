@@ -99,6 +99,24 @@ def register():
        f"https://secure-auth-system-bp36.onrender.com/api/auth/"
        f"verify-email/{user.verification_token}"
 )
+    try:
+
+      send_verification_email(
+        email,
+        verification_link
+    )
+
+    except Exception as e:
+
+      print(
+        "EMAIL ERROR:",
+        str(e)
+    )
+
+    return jsonify({
+        "message":
+        "Unable to send verification email"
+    }), 500
 
     return jsonify({
         "message":
