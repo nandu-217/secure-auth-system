@@ -76,13 +76,19 @@ def register():
         (User.username == username)
     ).first()
 
-    if existing_user:
+    email_exists = User.query.filter_by(email=email).first()
 
-        return jsonify({
-            "message":
-            "User already exists"
-        }), 409
+    if email_exists:
+      return jsonify({
+        "message": "Email already exists"
+    }), 409
 
+    username_exists = User.query.filter_by(username=username).first()
+
+    if username_exists:
+      return jsonify({
+        "message": "Username already exists"
+    }), 409
     user = create_user(
         username,
         email,

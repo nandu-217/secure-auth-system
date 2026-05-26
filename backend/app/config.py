@@ -80,3 +80,5 @@ MAIL_PASSWORD = os.getenv(
 MAIL_DEFAULT_SENDER = os.getenv(
     "MAIL_USERNAME"
 )
+print("DATABASE_URL =", os.getenv("DATABASE_URL"))
+print("SQLALCHEMY_DATABASE_URI =", app.config["SQLALCHEMY_DATABASE_URI"])
