@@ -1,43 +1,56 @@
-
-from flask import current_app
-
-
-import resend
 import os
+import resend
+
+resend.api_key = os.getenv(
+    "re_2mtLz3Hr_FMbJVKVgxAsvCXoRCLxyzx5n"
+)
+
 
 # EMAIL VERIFICATION
-import smtplib
-from flask import current_app
-
 def send_verification_email(
     recipient,
     verification_link
 ):
+    try:
 
-    print("STEP 1")
+        resend.Emails.send({
 
-    server = smtplib.SMTP(
-        current_app.config["MAIL_SERVER"],
-        current_app.config["MAIL_PORT"],
-        timeout=10
-    )
+            "from":
+            "onboarding@resend.dev",
 
-    print("STEP 2")
+            "to":
+            recipient,
 
-    server.starttls()
+            "subject":
+            "Verify Your Email",
 
-    print("STEP 3")
+            "html":
+            f"""
+            <h2>Email Verification</h2>
 
-    server.login(
-        current_app.config["MAIL_USERNAME"],
-        current_app.config["MAIL_PASSWORD"]
-    )
+            <p>
+            Thank you for registering.
+            </p>
 
-    print("STEP 4")
+            <p>
+                <a href="{verification_link}">
+                    Verify Email
+                </a>
+            </p>
+            """
+        })
 
-    server.quit()
+        print(
+            f"Verification email sent to {recipient}"
+        )
 
-    print("STEP 5")
+    except Exception as e:
+
+        print(
+            f"Verification Email Error: {str(e)}"
+        )
+
+        raise
 
 
 # PASSWORD RESET
@@ -47,36 +60,28 @@ def send_reset_email(
 ):
     try:
 
-        print(
-            "Sending password reset email to:",
-            recipient
-        )
+        resend.Emails.send({
 
-        msg = Message(
-            subject="Password Reset Request",
-            sender=current_app.config[
-                "MAIL_DEFAULT_SENDER"
-            ],
-            recipients=[recipient]
-        )
+            "from":
+            "onboarding@resend.dev",
 
-        msg.body = f"""
-Hello,
+            "to":
+            recipient,
 
-A password reset request was received.
+            "subject":
+            "Password Reset Request",
 
-Click the link below to reset your password:
+            "html":
+            f"""
+            <h2>Password Reset</h2>
 
-{reset_link}
-
-If you did not request this change,
-please ignore this email.
-
-Regards,
-Secure Auth Team
-"""
-
-        mail.send(msg)
+            <p>
+                <a href="{reset_link}">
+                    Reset Password
+                </a>
+            </p>
+            """
+        })
 
         print(
             f"Password reset email sent to {recipient}"
@@ -98,36 +103,24 @@ def send_otp_email(
 ):
     try:
 
-        print(
-            "Sending OTP email to:",
-            recipient
-        )
+        resend.Emails.send({
 
-        msg = Message(
-            subject="Your Login OTP",
-            sender=current_app.config[
-                "MAIL_DEFAULT_SENDER"
-            ],
-            recipients=[recipient]
-        )
+            "from":
+            "onboarding@resend.dev",
 
-        msg.body = f"""
-Hello,
+            "to":
+            recipient,
 
-Your One-Time Password (OTP) is:
+            "subject":
+            "Your Login OTP",
 
-{otp_code}
+            "html":
+            f"""
+            <h2>Your OTP</h2>
 
-This OTP can only be used once.
-
-If you did not request this OTP,
-please ignore this email.
-
-Regards,
-Secure Auth Team
-"""
-
-        mail.send(msg)
+            <h1>{otp_code}</h1>
+            """
+        })
 
         print(
             f"OTP email sent to {recipient}"
