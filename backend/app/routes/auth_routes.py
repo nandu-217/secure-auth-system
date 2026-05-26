@@ -100,25 +100,6 @@ def register():
        f"verify-email/{user.verification_token}"
 )
 
-    try:
-
-        send_verification_email(
-            email,
-            verification_link
-        )
-
-    except Exception as e:
-
-        print(
-            "EMAIL ERROR:",
-            str(e)
-        )
-
-        return jsonify({
-            "message":
-            "User created but verification email could not be sent"
-        }), 500
-
     return jsonify({
         "message":
         "Registration successful. Please check your email and verify your account."
