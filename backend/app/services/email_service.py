@@ -1,46 +1,42 @@
 from flask_mail import Message
+from flask import current_app
+
 from app.extensions import mail
 
 
 # EMAIL VERIFICATION
+import smtplib
+from flask import current_app
+
 def send_verification_email(
     recipient,
     verification_link
 ):
-    try:
 
-        msg = Message(
-            subject="Verify Your Email",
-            sender="garanandini067@gmail.com",
-            recipients=[recipient]
-        )
+    print("STEP 1")
 
-        msg.body = f"""
-Hello,
+    server = smtplib.SMTP(
+        current_app.config["MAIL_SERVER"],
+        current_app.config["MAIL_PORT"],
+        timeout=10
+    )
 
-Thank you for registering.
+    print("STEP 2")
 
-Please click the link below to verify your account:
+    server.starttls()
 
-{verification_link}
+    print("STEP 3")
 
-Regards,
-Secure Auth Team
-"""
+    server.login(
+        current_app.config["MAIL_USERNAME"],
+        current_app.config["MAIL_PASSWORD"]
+    )
 
-        mail.send(msg)
+    print("STEP 4")
 
-        print(
-            f"Verification email sent to {recipient}"
-        )
+    server.quit()
 
-    except Exception as e:
-
-        print(
-            f"Verification Email Error: {str(e)}"
-        )
-
-        raise
+    print("STEP 5")
 
 
 # PASSWORD RESET
@@ -50,9 +46,16 @@ def send_reset_email(
 ):
     try:
 
+        print(
+            "Sending password reset email to:",
+            recipient
+        )
+
         msg = Message(
             subject="Password Reset Request",
-            sender="garanandini067@gmail.com",
+            sender=current_app.config[
+                "MAIL_DEFAULT_SENDER"
+            ],
             recipients=[recipient]
         )
 
@@ -94,9 +97,16 @@ def send_otp_email(
 ):
     try:
 
+        print(
+            "Sending OTP email to:",
+            recipient
+        )
+
         msg = Message(
             subject="Your Login OTP",
-            sender="garanandini067@gmail.com",
+            sender=current_app.config[
+                "MAIL_DEFAULT_SENDER"
+            ],
             recipients=[recipient]
         )
 

@@ -8,7 +8,7 @@ if (!token) {
 async function loadDashboard() {
 
     const response = await fetch(
-        "http://127.0.0.1:5000/api/auth/dashboard",
+        "https://secure-auth-system-bp36.onrender.com/api/auth/dashboard",
         {
             headers: {
                 Authorization: `Bearer ${token}`

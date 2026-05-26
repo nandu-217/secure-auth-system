@@ -1,7 +1,6 @@
 import os
 
 from dotenv import load_dotenv
-
 from datetime import timedelta
 
 load_dotenv()
@@ -26,33 +25,67 @@ class Config:
     )
 
     SQLALCHEMY_DATABASE_URI = os.getenv(
-    "DATABASE_URL"
-       )
+        "DATABASE_URL"
+    )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    
-
-    MAIL_SERVER = os.getenv("MAIL_SERVER")
+    # MAIL SETTINGS
+    MAIL_SERVER = os.getenv(
+        "MAIL_SERVER"
+    )
 
     MAIL_PORT = int(
-    os.getenv("MAIL_PORT", 587)
-)
+        os.getenv(
+            "MAIL_PORT",
+            587
+        )
+    )
 
-    MAIL_USE_TLS = True
+    MAIL_USE_TLS = (
+        os.getenv(
+            "MAIL_USE_TLS",
+            "True"
+        ) == "True"
+    )
 
     MAIL_USE_SSL = False
 
+    MAIL_USE_SSL = (
+    os.getenv(
+        "MAIL_USE_SSL",
+        "False"
+    ) == "True"
+)
     MAIL_USERNAME = os.getenv(
-    "MAIL_USERNAME"
-   )
+        "MAIL_USERNAME"
+    )
 
     MAIL_PASSWORD = os.getenv(
-    "MAIL_PASSWORD"
-   )
+        "MAIL_PASSWORD"
+    )
 
     MAIL_DEFAULT_SENDER = os.getenv(
-    "MAIL_USERNAME"
-   )
-print("DATABASE_URL =", os.getenv("DATABASE_URL"))
-#print("SQLALCHEMY_DATABASE_URI =", app.config["SQLALCHEMY_DATABASE_URI"])
+        "MAIL_USERNAME"
+    )
+
+
+print(
+    "DATABASE_URL =",
+    os.getenv("DATABASE_URL")
+)
+
+print(
+    "MAIL_SERVER =",
+    os.getenv("MAIL_SERVER")
+)
+
+print(
+    "MAIL_PORT =",
+    os.getenv("MAIL_PORT")
+)
+
+print(
+    "MAIL_USERNAME =",
+    os.getenv("MAIL_USERNAME")
+)

@@ -64,10 +64,8 @@ async function register() {
             response.status
         );
 
-        console.log(
-            "Response:",
-            data
-        );
+        console.log("Response:", JSON.stringify(result, null, 2));
+alert(result.message);
 
         if (response.ok) {
 
