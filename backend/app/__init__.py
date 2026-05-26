@@ -27,7 +27,17 @@ def create_app():
 
     app.config.from_object(Config)
     
-    CORS(app)
+    CORS(
+    app,
+    resources={
+        r"/*": {
+            "origins": [
+                "https://gilded-licorice-bd735c.netlify.app"
+            ]
+        }
+    },
+    supports_credentials=True
+)
 
     db.init_app(app)
     bcrypt.init_app(app)
