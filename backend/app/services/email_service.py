@@ -1,8 +1,9 @@
-from flask_mail import Message
+
 from flask import current_app
 
-from app.extensions import mail
 
+import resend
+import os
 
 # EMAIL VERIFICATION
 import smtplib
