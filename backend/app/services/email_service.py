@@ -2,7 +2,7 @@ import os
 import resend
 
 resend.api_key = os.getenv(
-    "re_2mtLz3Hr_FMbJVKVgxAsvCXoRCLxyzx5n"
+    "RESEND_API_KEY"
 )
 
 
