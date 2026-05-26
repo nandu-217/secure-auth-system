@@ -96,9 +96,9 @@ def register():
     )
 
     verification_link = (
-        f"http://127.0.0.1:5000/api/auth/"
-        f"verify-email/{user.verification_token}"
-    )
+       f"https://secure-auth-system-bp36.onrender.com/api/auth/"
+       f"verify-email/{user.verification_token}"
+)
 
     try:
 
