@@ -113,16 +113,15 @@ def register():
         str(e)
     )
 
-    return jsonify({
+      return jsonify({
         "message":
         "Unable to send verification email"
     }), 500
 
     return jsonify({
-        "message":
-        "Registration successful. Please check your email and verify your account."
-    }), 201
-
+    "message":
+    "Registration successful. Please check your email and verify your account."
+}), 201
 
 # VERIFY EMAIL
 @auth_bp.route(
