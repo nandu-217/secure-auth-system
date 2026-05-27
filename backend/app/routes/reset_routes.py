@@ -85,10 +85,9 @@ def forgot_password():
     db.session.commit()
 
     reset_link = (
-
-        "http://127.0.0.1:5500/"
-        f"reset-password.html?token={token}"
-    )
+    "https://gilded-licorice-bd735c.netlify.app/"
+    f"reset-password.html?token={token}"
+)
 
     send_reset_email(
         email,
