@@ -1,41 +1,49 @@
-from flask_mail import Message
+import os
+import resend
 
-from app.extensions import mail
-
+resend.api_key = os.getenv(
+    "RESEND_API_KEY"
+)
 
 def send_reset_email(
     recipient,
     reset_link
 ):
+    try:
 
-    msg = Message(
+        resend.Emails.send({
 
-        subject=
-        "Password Reset Request",
+            "from":
+            "onboarding@resend.dev",
 
-        sender=
-        "garanandini067@gmail.com",
+            "to":
+            recipient,
 
-        recipients=[
-            recipient
-        ]
-    )
+            "subject":
+            "Password Reset",
 
-    msg.body = f"""
-Hello,
+            "html":
+            f"""
+            <h2>Password Reset</h2>
 
-A password reset request was made
-for your account.
+            <p>
+                Click below to reset password:
+            </p>
 
-Click the link below:
+            <a href="{reset_link}">
+                Reset Password
+            </a>
+            """
+        })
 
-{reset_link}
+        print(
+            f"Password reset email sent to {recipient}"
+        )
 
-If you did not request this,
-please ignore this email.
+    except Exception as e:
 
-Regards,
-Secure Auth Team
-"""
+        print(
+            f"Password Reset Email Error: {str(e)}"
+        )
 
-    mail.send(msg)
+        raise
